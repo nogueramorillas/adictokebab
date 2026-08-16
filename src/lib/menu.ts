@@ -1,16 +1,10 @@
-import durumWrap from "@assets/plato_3_1779960251363.png";
-import donerSandwich from "@assets/plato_5_1779960251364.png";
-import nuggets from "@assets/plato_4_1779960251364.png";
-import combinadoPlato from "@assets/plato_1_1779960251362.png";
-import patatasKebab from "@assets/plato_2_1779960251363.png";
-
 export type MenuItemData = { name: string; price: string; meatOptions?: string[] };
 
 export const MENU = {
   destacados: [
-    { name: "Durum Súper Grande", price: "5,99€", meatOptions: ["Pollo", "Ternera"], desc: "Pollo o Ternera con ensalada y nuestra salsa especial. El pecado está servido.", img: durumWrap },
-    { name: "Menú Súper Grande", price: "8,99€", meatOptions: ["Pollo", "Ternera"], desc: "Durum Súper Grande + Patatas Súper Grande + Bebida.", img: donerSandwich },
-    { name: "Fingers de Pollo Súper Grande", price: "8,99€", desc: "Crujientes tiras de pollo rebozadas con patatas.", img: nuggets },
+    { name: "Durum Súper Grande", price: "5,99€", meatOptions: ["Pollo", "Ternera"], desc: "Pollo o Ternera con ensalada y nuestra salsa especial. El pecado está servido.", icon: "🌯" },
+    { name: "Menú Súper Grande", price: "8,99€", meatOptions: ["Pollo", "Ternera"], desc: "Durum Súper Grande + Patatas Súper Grande + Bebida.", icon: "🔥" },
+    { name: "Fingers de Pollo Súper Grande", price: "8,99€", desc: "Crujientes tiras de pollo rebozadas con patatas.", icon: "🍗" },
   ],
   durum: [
     { name: "Durum Mini", price: "1,99€", meatOptions: ["Pollo", "Ternera"], desc: "Pollo o Ternera con ensalada" },
@@ -99,5 +93,3 @@ export function buildDurumName(
   if (orderedSauces.length > 0) parts.push(orderedSauces.join(", "));
   return parts.length > 0 ? `${baseName} (${parts.join(" · ")})` : baseName;
 }
-
-export { durumWrap, donerSandwich, nuggets, combinadoPlato, patatasKebab };

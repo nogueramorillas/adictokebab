@@ -9,7 +9,7 @@ import CheckoutForm from "@/components/CheckoutForm";
 import DurumOptionsDialog from "@/components/DurumOptionsDialog";
 import PlatoOptionsDialog, { type PlatoItem } from "@/components/PlatoOptionsDialog";
 import MeatSelectionDialog, { type MeatItem } from "@/components/MeatSelectionDialog";
-import { MENU, isDurum, isPlato, durumWrap, nuggets, combinadoPlato, patatasKebab } from "@/lib/menu";
+import { MENU, isDurum, isPlato } from "@/lib/menu";
 import { useLocation } from "wouter";
 import { useAuthMe, useAuthLogout } from "@/api";
 
@@ -17,6 +17,19 @@ function useDarkMode() {
   useEffect(() => {
     document.documentElement.classList.add('dark');
   }, []);
+}
+
+// Marca propia de Adicto Kebab: brocheta estilizada, sin depender de fotos de stock.
+function KebabIcon({ className }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 100 100" fill="none" className={className} xmlns="http://www.w3.org/2000/svg">
+      <line x1="50" y1="4" x2="50" y2="96" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
+      <ellipse cx="50" cy="20" rx="17" ry="10" fill="currentColor" />
+      <ellipse cx="50" cy="39" rx="19" ry="10" fill="currentColor" opacity="0.85" />
+      <ellipse cx="50" cy="58" rx="17" ry="10" fill="currentColor" opacity="0.7" />
+      <ellipse cx="50" cy="76" rx="15" ry="9" fill="currentColor" opacity="0.55" />
+    </svg>
+  );
 }
 
 const mapsUrl = "https://www.google.com/maps/search/?api=1&query=" + encodeURIComponent("c/ d'Atenes 11, Mataró");
@@ -68,24 +81,6 @@ function Section({ title, items, onSelect, preview = 2 }: { title: string, items
         {visible.map((item, i) => (
           <MenuItem key={i} name={item.name} price={item.price} desc={item.desc} onClick={() => onSelect(item)} />
         ))}
-      </div>
-    </div>
-  );
-}
-
-function ImageSection({ title, items, img, imgAlt, onSelect, preview = 2, imgPosition = "object-center" }: { title: string, items: {name: string, price: string, desc?: string}[], img: string, imgAlt: string, onSelect: (item: {name: string, price: string}) => void, preview?: number, imgPosition?: string }) {
-  const [expanded, setExpanded] = useState(false);
-  const visible = expanded ? items : items.slice(0, preview);
-
-  return (
-    <div className="mb-10">
-      <SectionHeader title={title} expanded={expanded} onToggle={() => setExpanded(e => !e)} />
-      <div className="bg-card rounded-xl border border-border shadow-sm">
-        <div className="p-4">
-          {visible.map((item, i) => (
-            <MenuItem key={i} name={item.name} price={item.price} desc={item.desc} onClick={() => onSelect(item)} />
-          ))}
-        </div>
       </div>
     </div>
   );
@@ -303,16 +298,16 @@ useEffect(() => {
           )}
         </div>
 
-        {/* Hero Section */}
-        <header className="relative w-full aspect-[4/5] min-h-[450px] flex flex-col justify-end p-6">
-          <div className="absolute inset-0 bg-black/60 z-10" />
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/80 to-transparent z-10" />
-          <img
-            src={durumWrap}
-            alt="Adicto Kebab"
-            className="absolute inset-0 w-full h-full object-cover"
-          />
-          
+        {/* Hero Section — identidad gráfica propia (negro + rojo), sin fotos prestadas */}
+        <header className="relative w-full aspect-[4/5] min-h-[450px] flex flex-col justify-end p-6 overflow-hidden bg-black">
+          <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-background" />
+          <div className="absolute -top-24 -right-16 w-72 h-72 rounded-full bg-primary/30 blur-3xl" />
+          <div className="absolute top-1/3 -left-20 w-64 h-64 rounded-full bg-primary/20 blur-3xl" />
+          <div className="absolute inset-0 flex items-center justify-center opacity-[0.08]">
+            <KebabIcon className="w-72 h-72 text-primary" />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+
           <div className="relative z-20 flex flex-col gap-4">
             <div className="inline-flex items-center justify-between w-full">
               <div className="inline-flex items-center gap-1.5 bg-primary/20 text-primary border border-primary/30 px-3 py-1.5 rounded-full backdrop-blur-md">
@@ -402,13 +397,14 @@ useEffect(() => {
             <div className="flex flex-col gap-5">
               {MENU.destacados.map((item, i) => (
                 <div key={i} className="bg-card rounded-2xl overflow-hidden border border-border shadow-sm flex flex-col" data-testid={`card-featured-${i}`}>
-                  <div className="aspect-[21/9] w-full relative">
-                    <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                    <div className="absolute bottom-3 left-3 right-3 flex justify-between items-end">
-                      <h3 className="font-display font-bold text-white text-xl leading-tight w-2/3">{item.name}</h3>
-                      <span className="bg-primary text-white font-black px-2.5 py-1 rounded-lg text-sm shadow-md">{item.price}</span>
+                  <div className="w-full relative bg-gradient-to-br from-black via-neutral-900 to-black px-5 py-6 flex items-center justify-between gap-3">
+                    <div className="flex items-center gap-4 min-w-0">
+                      <div className="w-16 h-16 shrink-0 rounded-2xl bg-primary/15 border border-primary/30 flex items-center justify-center text-4xl">
+                        {item.icon}
+                      </div>
+                      <h3 className="font-display font-bold text-white text-xl leading-tight">{item.name}</h3>
                     </div>
+                    <span className="bg-primary text-white font-black px-2.5 py-1 rounded-lg text-sm shadow-md shrink-0">{item.price}</span>
                   </div>
                   <div className="p-4 flex flex-col gap-3">
                     <p className="text-sm text-muted-foreground leading-snug">{item.desc}</p>
@@ -435,21 +431,23 @@ useEffect(() => {
               <div className="h-1 flex-1 bg-border/50 ml-4 rounded-full" />
             </div>
 
-            <Section title="Durum" items={getItems("durum")} onSelect={handleAdd} />
-            <Section title="Menús" items={getItems("menus")} onSelect={handleAdd} />
-
-            <ImageSection title="Patatas" items={getItems("patatas")} img={patatasKebab} imgAlt="Patatas" onSelect={handleAdd} />
-            <ImageSection title="Fingers de Pollo" items={getItems("fingers")} img={nuggets} imgAlt="Fingers de Pollo" onSelect={handleAdd} imgPosition="object-bottom" />
-            <ImageSection title="Combinado" items={getItems("combinado")} img={combinadoPlato} imgAlt="Combinado" onSelect={handleAdd} />
-            <Section title="Postres" items={getItems("postres")} onSelect={handleAdd} />
-            <Section title="Bebidas" items={getItems("bebidas")} onSelect={handleAdd} />
-            <Section title="Salsas" items={getItems("salsas")} onSelect={handleAdd} preview={4} />
+            <Section title="Durum 🌯" items={getItems("durum")} onSelect={handleAdd} />
+            <Section title="Menús 🔥" items={getItems("menus")} onSelect={handleAdd} />
+            <Section title="Patatas 🍟" items={getItems("patatas")} onSelect={handleAdd} />
+            <Section title="Fingers de Pollo 🍗" items={getItems("fingers")} onSelect={handleAdd} />
+            <Section title="Combinado 🍽️" items={getItems("combinado")} onSelect={handleAdd} />
+            <Section title="Postres 🍫" items={getItems("postres")} onSelect={handleAdd} />
+            <Section title="Bebidas 🥤" items={getItems("bebidas")} onSelect={handleAdd} />
+            <Section title="Salsas 🌶️" items={getItems("salsas")} onSelect={handleAdd} preview={4} />
           </div>
 
         </main>
 
         {/* Footer */}
         <footer className="bg-card border-t border-border mt-8 p-6 text-center pb-28 md:pb-6">
+          <div className="w-12 h-12 rounded-full bg-black border border-primary/40 flex items-center justify-center mx-auto mb-3">
+            <KebabIcon className="w-6 h-6 text-primary" />
+          </div>
           <h2 className="font-display font-black text-2xl text-primary mb-4 tracking-tighter">ADICTO KEBAB</h2>
 
           <div className="flex justify-center gap-4 mb-6">
