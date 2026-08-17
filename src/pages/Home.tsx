@@ -12,6 +12,7 @@ import MeatSelectionDialog, { type MeatItem } from "@/components/MeatSelectionDi
 import { MENU, isDurum, isPlato } from "@/lib/menu";
 import { useLocation } from "wouter";
 import { useAuthMe, useAuthLogout } from "@/api";
+import storefront from "@assets/storefront.png";
 
 function useDarkMode() {
   useEffect(() => {
@@ -298,15 +299,15 @@ useEffect(() => {
           )}
         </div>
 
-        {/* Hero Section — identidad gráfica propia (negro + rojo), sin fotos prestadas */}
+        {/* Hero Section — foto real del local de Adicto Kebab */}
         <header className="relative w-full aspect-[4/5] min-h-[450px] flex flex-col justify-end p-6 overflow-hidden bg-black">
-          <div className="absolute inset-0 bg-gradient-to-b from-black via-neutral-950 to-background" />
-          <div className="absolute -top-24 -right-16 w-72 h-72 rounded-full bg-primary/30 blur-3xl" />
-          <div className="absolute top-1/3 -left-20 w-64 h-64 rounded-full bg-primary/20 blur-3xl" />
-          <div className="absolute inset-0 flex items-center justify-center opacity-[0.08]">
-            <KebabIcon className="w-72 h-72 text-primary" />
-          </div>
-          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+          <img
+            src={storefront}
+            alt="Local de Adicto Kebab — Mercado Cerdanyola, Mataró"
+            className="absolute inset-0 w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-black/55" />
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/60 to-transparent" />
 
           <div className="relative z-20 flex flex-col gap-4">
             <div className="inline-flex items-center justify-between w-full">
