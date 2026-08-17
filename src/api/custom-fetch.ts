@@ -333,7 +333,7 @@ if (BASE && typeof input === "string" && input.startsWith("/")) {
 
   const requestInfo = { method, url: resolveUrl(input) };
 
-  // 🔥 AQUÍ ESTÁ EL FIX
+  // AQUÍ ESTÁ EL FIX
   const response = await fetch(input, {
   ...init,
   headers,

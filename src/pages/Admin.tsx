@@ -1044,7 +1044,7 @@ function Dashboard() {
                     {recentCustomers.map((c, i) => {
                       const phone = c.phone.replace(/\D/g, "");
                       const offerText = encodeURIComponent(
-                        `Hola ${c.name}, tenemos una oferta especial para ti en Adicto Kebab 🌯`,
+                        `Hola ${c.name}, tenemos una oferta especial para ti en Adicto Kebab`,
                       );
                       return (
                         <div

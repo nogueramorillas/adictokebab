@@ -128,7 +128,7 @@ function TrackingBody({ data }: { data: OrderTracking }) {
 </div>
       <div className="text-center pt-4">
         <p className="text-sm text-muted-foreground">
-          Hola{data.customerName ? `, ${data.customerName}` : ""} 👋
+          Hola{data.customerName ? `, ${data.customerName}` : ""}
         </p>
         <h2 className="font-display text-3xl font-black mt-1">Tu pedido</h2>
       </div>

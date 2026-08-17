@@ -1,10 +1,14 @@
+import durumPhoto from "@assets/durum.png";
+import menuSuperGrandePhoto from "@assets/menu-super-grande.png";
+import fingersPhoto from "@assets/fingers.png";
+
 export type MenuItemData = { name: string; price: string; meatOptions?: string[] };
 
 export const MENU = {
   destacados: [
-    { name: "Durum Súper Grande", price: "5,99€", meatOptions: ["Pollo", "Ternera"], desc: "Pollo o Ternera con ensalada y nuestra salsa especial. El pecado está servido.", icon: "🌯" },
-    { name: "Menú Súper Grande", price: "8,99€", meatOptions: ["Pollo", "Ternera"], desc: "Durum Súper Grande + Patatas Súper Grande + Bebida.", icon: "🔥" },
-    { name: "Fingers de Pollo Súper Grande", price: "8,99€", desc: "Crujientes tiras de pollo rebozadas con patatas.", icon: "🍗" },
+    { name: "Durum Súper Grande", price: "5,99€", meatOptions: ["Pollo", "Ternera"], desc: "Pollo o Ternera con ensalada y nuestra salsa especial. El pecado está servido.", img: durumPhoto },
+    { name: "Menú Súper Grande", price: "8,99€", meatOptions: ["Pollo", "Ternera"], desc: "Durum Súper Grande + Patatas Súper Grande + Bebida.", img: menuSuperGrandePhoto },
+    { name: "Fingers de Pollo Súper Grande", price: "8,99€", desc: "Crujientes tiras de pollo rebozadas con patatas.", img: fingersPhoto },
   ],
   durum: [
     { name: "Durum Mini", price: "1,99€", meatOptions: ["Pollo", "Ternera"], desc: "Pollo o Ternera con ensalada" },

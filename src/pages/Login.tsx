@@ -31,14 +31,14 @@ const handleSubmit = async () => {
     return;
   }
 
-  // 👉 SI ES REGISTRO
+  // SI ES REGISTRO
   if (isRegister) {
     alert("Cuenta creada correctamente");
     setIsRegister(false);
     return;
   }
 
-  // 👉 FIX SAFARI SOLO EN LOGIN
+  // FIX SAFARI SOLO EN LOGIN
   await fetch("/api/auth/me", {
   credentials: "include",
   cache: "no-store",

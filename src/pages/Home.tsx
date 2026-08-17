@@ -170,7 +170,7 @@ function CartDrawer() {
               </div>
               {total < MIN_ORDER && (
                 <div className="rounded-xl border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive font-medium text-center mb-4">
-                  🛵 Pedido mínimo a domicilio: <strong>10,00€</strong><br />
+                  Pedido mínimo a domicilio: <strong>10,00€</strong><br />
                   <span className="text-xs font-normal opacity-80">Te faltan {(MIN_ORDER - total).toFixed(2).replace('.', ',')}€ para llegar al mínimo</span>
                 </div>
               )}
@@ -392,7 +392,7 @@ useEffect(() => {
           {/* Lo más pedido */}
           <div className="mb-12">
             <h2 className="font-display text-3xl font-black mb-6 flex items-center gap-2 tracking-tight">
-              LO MÁS PEDIDO 🔥
+              LO MÁS PEDIDO
             </h2>
             
             <div className="flex flex-col gap-5">
@@ -400,8 +400,12 @@ useEffect(() => {
                 <div key={i} className="bg-card rounded-2xl overflow-hidden border border-border shadow-sm flex flex-col" data-testid={`card-featured-${i}`}>
                   <div className="w-full relative bg-gradient-to-br from-black via-neutral-900 to-black px-5 py-6 flex items-center justify-between gap-3">
                     <div className="flex items-center gap-4 min-w-0">
-                      <div className="w-16 h-16 shrink-0 rounded-2xl bg-primary/15 border border-primary/30 flex items-center justify-center text-4xl">
-                        {item.icon}
+                      <div className="w-16 h-16 shrink-0 rounded-2xl bg-primary/15 border border-primary/30 flex items-center justify-center overflow-hidden">
+                        {"img" in item && item.img ? (
+                          <img src={item.img} alt={item.name} className="w-full h-full object-cover" />
+                        ) : (
+                          <KebabIcon className="w-8 h-8 text-primary" />
+                        )}
                       </div>
                       <h3 className="font-display font-bold text-white text-xl leading-tight">{item.name}</h3>
                     </div>
@@ -432,14 +436,14 @@ useEffect(() => {
               <div className="h-1 flex-1 bg-border/50 ml-4 rounded-full" />
             </div>
 
-            <Section title="Durum 🌯" items={getItems("durum")} onSelect={handleAdd} />
-            <Section title="Menús 🔥" items={getItems("menus")} onSelect={handleAdd} />
-            <Section title="Patatas 🍟" items={getItems("patatas")} onSelect={handleAdd} />
-            <Section title="Fingers de Pollo 🍗" items={getItems("fingers")} onSelect={handleAdd} />
-            <Section title="Combinado 🍽️" items={getItems("combinado")} onSelect={handleAdd} />
-            <Section title="Postres 🍫" items={getItems("postres")} onSelect={handleAdd} />
-            <Section title="Bebidas 🥤" items={getItems("bebidas")} onSelect={handleAdd} />
-            <Section title="Salsas 🌶️" items={getItems("salsas")} onSelect={handleAdd} preview={4} />
+            <Section title="Durum" items={getItems("durum")} onSelect={handleAdd} />
+            <Section title="Menús" items={getItems("menus")} onSelect={handleAdd} />
+            <Section title="Patatas" items={getItems("patatas")} onSelect={handleAdd} />
+            <Section title="Fingers de Pollo" items={getItems("fingers")} onSelect={handleAdd} />
+            <Section title="Combinado" items={getItems("combinado")} onSelect={handleAdd} />
+            <Section title="Postres" items={getItems("postres")} onSelect={handleAdd} />
+            <Section title="Bebidas" items={getItems("bebidas")} onSelect={handleAdd} />
+            <Section title="Salsas" items={getItems("salsas")} onSelect={handleAdd} preview={4} />
           </div>
 
         </main>

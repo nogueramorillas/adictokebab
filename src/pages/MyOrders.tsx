@@ -21,7 +21,7 @@ const handleRepeatOrder = (order: any) => {
     for (let i = 0; i < item.quantity; i++) {
       addItem({
         name: item.name,
-        price: item.price.toString(), // 🔥 CLAVE
+        price: item.price.toString(), // CLAVE
       });
     }
   });
@@ -36,7 +36,7 @@ if (repeating) {
     <div className="min-h-screen flex items-center justify-center text-center">
       <div>
         <p className="text-xl font-bold mb-2">
-          Pedido repetido correctamente ✅
+          Pedido repetido correctamente
         </p>
         <p className="text-sm text-muted-foreground">
           Redirigiendo al menú...

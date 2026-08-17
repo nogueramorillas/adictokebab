@@ -27,7 +27,7 @@ function Router() {
   <Route path="/login" component={Login} />
   <Route path="/mis-pedidos" component={MyOrders} />
 
-  {/* 🔥 SIEMPRE AL FINAL */}
+  {/* SIEMPRE AL FINAL */}
   <Route component={NotFound} />
 </Switch>
   );

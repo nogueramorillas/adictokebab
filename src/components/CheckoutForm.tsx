@@ -134,7 +134,7 @@ function LocalCheckoutForm({ onComplete }: { onComplete: () => void }) {
                   : "border-border bg-card text-muted-foreground"
               }`}
             >
-              {m === "cash" ? "💵 Efectivo" : "💳 Tarjeta"}
+              {m === "cash" ? "Efectivo" : "Tarjeta"}
             </button>
           ))}
         </div>
@@ -525,7 +525,7 @@ function DeliveryCheckoutForm({
 
         {total < MIN_ORDER && (
           <div className="rounded-xl border border-destructive/40 bg-destructive/10 px-4 py-3 text-sm text-destructive font-medium text-center">
-            🛵 Pedido mínimo a domicilio: <strong>10,00€</strong><br />
+            Pedido mínimo a domicilio: <strong>10,00€</strong><br />
             <span className="text-xs font-normal opacity-80">Te faltan {(MIN_ORDER - total).toFixed(2).replace('.', ',')}€ para llegar al mínimo</span>
           </div>
         )}
